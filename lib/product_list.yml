@@ -1,0 +1,13 @@
+---
+- :item:
+    :name: Lavender heart
+    :price: 9.25
+    :code: 001
+- :item:
+    :name: Personalised cufflinks
+    :price: 45
+    :code: 002
+- :item:
+    :name: Kids T-shirt
+    :price: 19.95
+    :code: 003

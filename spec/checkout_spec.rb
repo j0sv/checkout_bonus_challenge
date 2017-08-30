@@ -1,0 +1,3 @@
+describe Checkout do
+  
+end
