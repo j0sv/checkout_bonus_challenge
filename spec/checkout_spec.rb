@@ -26,4 +26,18 @@ describe Checkout do
     subject.shop(2)
     expect{subject.total_cost}.to output("Your total is: $66.78.\n").to_stdout
   end
+
+  it 'should give a discount if you buy two lavender hearts' do
+    subject.shop(0)
+    subject.shop(0)
+    expect{subject.total_cost}.to output("Your total is: $17.0.\n").to_stdout
+  end
+
+  it 'should give discount for both 2x hearts and total > $60' do
+    subject.shop(0)
+    subject.shop(0)
+    subject.shop(1)
+    subject.shop(2)
+    expect{subject.total_cost}.to output("Your total is: $73.76.\n").to_stdout
+  end
 end
