@@ -1,0 +1,9 @@
+---
+- :item:
+    :name: Two lavender hearts
+    :demand: 2
+    :discount: 1.50
+- :item:
+    :name: Total over $60
+    :demand: 60
+    :discount: 0.1
