@@ -17,10 +17,24 @@ class Checkout
 
   def total_cost
     length = basket.length
-    total = 0
+    @total = 0
     (0..length-1).each do |x|
-    total += basket[x][:item][:price]
+    @total += basket[x][:item][:price]
     end
-    puts "Your total is: $#{total}."
+    if @total > 60
+      ten_percent_off
+      puts "Your total is: $#{@discount_percent}."
+    else
+    puts "Your total is: $#{@total}."
+    end
   end
+
+  def two_lavender_hearts
+    @total -= 1.5
+  end
+
+  def ten_percent_off
+    @discount_percent = @total * 0.9
+  end
+
 end

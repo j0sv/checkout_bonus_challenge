@@ -24,8 +24,10 @@ describe Checkout do
     expect(subject.promotions).to be_an_instance_of(Array)
   end
 
-  after do
-      subject.basket = []
-    end
-
+  it 'should give 10% off if total > $60' do
+    subject.shop(0)
+    subject.shop(1)
+    subject.shop(2)
+    expect{subject.total_cost}.to output("Your total is: $66.78.\n").to_stdout
+  end
 end
