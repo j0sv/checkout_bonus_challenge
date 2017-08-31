@@ -5,4 +5,13 @@ describe Checkout do
     expect(subject.products).to be_an_instance_of(Array)
   end
 
+  it 'should have an empty basket on init' do
+    expect(subject.basket).to match_array([])
+  end
+
+  it 'should be able to add stuff to basket' do
+    subject.shop(0)
+    expect(subject.basket).to match_array([{:item=>{:name=>"Lavender heart", :price=>9.25, :code=>1}}])
+  end
+
 end

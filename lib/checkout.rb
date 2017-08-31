@@ -10,6 +10,9 @@ def initialize
   @promotions
 end
 
-
+def shop(index)
+  @basket << @products[index]
+  puts "You have added #{@products[index][:item][:name]} and it costs #{@products[index][:item][:price]}"
+end
 
 end
