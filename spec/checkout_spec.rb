@@ -9,14 +9,23 @@ describe Checkout do
     expect(subject.basket).to match_array([])
   end
 
-  it 'should be able to add items to basket and get total cost' do
+  it 'should be able to add items to basket' do
     subject.shop(0)
     expect(subject.basket).to match_array([{:item=>{:name=>"Lavender heart", :price=>9.25, :code=>0}}])
-    expect{subject.shop(0)}.to output("You have added Lavender heart (price: 9.25).\nTotal cost is 9.25.\n").to_stdout
+    expect{subject.shop(0)}.to output("You have added Lavender heart (price: $9.25).\n").to_stdout
+  end
+
+  it 'should be able to get a total' do
+    subject.shop(0)
+    expect{subject.total_cost}.to output("Your total is: $9.25.\n").to_stdout
   end
 
   it 'should be able to have promotions' do
     expect(subject.promotions).to be_an_instance_of(Array)
   end
+
+  after do
+      subject.basket = []
+    end
 
 end
