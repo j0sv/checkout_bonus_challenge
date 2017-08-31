@@ -2,12 +2,11 @@ require 'yaml'
 
 class Checkout
 
-  attr_accessor :basket, :products, :promotions, :total
+  attr_accessor :basket, :products, :total
 
   def initialize
     @basket = []
     @products = YAML.load_file('./lib/product_list.yml')
-    @promotions = YAML.load_file('./lib/promotions.yml')
   end
 
   def shop(index)
