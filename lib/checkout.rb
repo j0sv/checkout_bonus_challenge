@@ -10,8 +10,15 @@ class Checkout
   end
 
   def shop(index)
-    @basket << @products[index]
-    puts "You have added #{@products[index][:item][:name]} (price: $#{@products[index][:item][:price]})."
+    if index.kind_of?(Integer) && 0 <= index && index <= 2
+      @basket << @products[index]
+      puts "You have added #{@products[index][:item][:name]} (price: $#{@products[index][:item][:price]})."
+    else
+      puts "Please use the products index number."
+      @products.each_with_index do |item, index|
+        puts "#{index}. #{item[:item][:name]}, $#{item[:item][:price]}."
+      end
+    end
   end
 
   def total_cost
@@ -25,12 +32,13 @@ class Checkout
     puts "Your total is: $#{@total.round(2)}."
   end
 
+private
   def two_lavender_hearts
     @discount_two = @total - 1.5
   end
 
   def ten_percent_off
-    @total = @total * 0.9
+    @total *= 0.9
   end
 
   def count_total_price

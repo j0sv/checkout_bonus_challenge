@@ -40,4 +40,8 @@ describe Checkout do
     subject.shop(2)
     expect{subject.total_cost}.to output("Your total is: $73.76.\n").to_stdout
   end
+
+  it 'should return error if you input a string to shop' do
+    expect{subject.shop("Y")}.to output("Please use the products index number.\n0. Lavender heart, $9.25.\n1. Personalised cufflinks, $45.\n2. Kids T-shirt, $19.95.\n").to_stdout
+  end
 end
