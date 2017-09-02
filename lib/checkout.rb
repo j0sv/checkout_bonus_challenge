@@ -22,46 +22,37 @@ class Checkout
   end
 
   def total_cost
-    count_hearts
-    count_total_price
-    if enough_hearts?
-    end
-    if @total >= 60
-      ten_percent_off
-    end
-    puts "Your total is: $#{@total.round(2)}."
+    total_price - get_discount
   end
 
 private
-  def two_lavender_hearts
-    @discount_two = @total - 1.5
+  def get_discount
+    sum = 0
+    sum = total_price * 0.1 if total_price >= 60 
+    sum +=1.5 if enough_hearts?
+    return sum
   end
 
-  def ten_percent_off
-    @total *= 0.9
-  end
-
-  def count_total_price
-    length = basket.length
-    @total = 0
-    (0..length-1).each do |x|
-    @total += basket[x][:item][:price]
+  def total_price
+    total = 0
+    basket.each do |prod|
+      total += prod[:item][:price]
     end
+    total
   end
 
   def count_hearts
-    length = basket.length
-    @hearts = 0
-    (0..length-1).each do |x|
-      if basket[x][:item][:code] == 0
-        @hearts += 1
+    hearts = 0
+    basket.each do |prod|
+      if prod[:item][:code] == 0
+        hearts += 1
       end
     end
+    return hearts 
   end
 
   def enough_hearts?
-    if @hearts >= 2
-    @total -= 1.5
-    end
+    count_hearts >= 2
   end
+  
 end

@@ -12,25 +12,24 @@ describe Checkout do
   it 'should be able to add items to basket' do
     subject.shop(0)
     expect(subject.basket).to match_array([{:item=>{:name=>"Lavender heart", :price=>9.25, :code=>0}}])
-    expect{subject.shop(0)}.to output("You have added Lavender heart (price: $9.25).\n").to_stdout
   end
 
   it 'should be able to get a total' do
     subject.shop(0)
-    expect{subject.total_cost}.to output("Your total is: $9.25.\n").to_stdout
+    expect(subject.total_cost).to eq(9.25)
   end
 
   it 'should give 10% off if total > $60' do
     subject.shop(0)
     subject.shop(1)
     subject.shop(2)
-    expect{subject.total_cost}.to output("Your total is: $66.78.\n").to_stdout
+    expect(subject.total_cost).to eq(66.78)
   end
 
   it 'should give a discount if you buy two lavender hearts' do
     subject.shop(0)
     subject.shop(0)
-    expect{subject.total_cost}.to output("Your total is: $17.0.\n").to_stdout
+    expect(subject.total_cost).to eq(17)
   end
 
   it 'should give discount for both 2x hearts and total > $60' do
@@ -38,7 +37,7 @@ describe Checkout do
     subject.shop(0)
     subject.shop(1)
     subject.shop(2)
-    expect{subject.total_cost}.to output("Your total is: $73.76.\n").to_stdout
+    expect(subject.total_cost).to eq(73.605)
   end
 
   it 'should return error if you input a string to shop' do
